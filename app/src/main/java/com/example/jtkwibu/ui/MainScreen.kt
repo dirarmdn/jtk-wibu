@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Done
 
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -34,7 +35,7 @@ fun MainScreen() {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentRoute = navBackStackEntry?.destination?.route
             if (currentRoute != Screen.Onboarding.route) {
-                NavigationBar {
+                NavigationBar(containerColor = MaterialTheme.colorScheme.primary) {
                     bottomItems.forEach { (screen, icon) ->
                         NavigationBarItem(
                             selected = currentRoute == screen.route,
@@ -44,11 +45,12 @@ fun MainScreen() {
                                     launchSingleTop = true
                                 }
                             },
-                            icon = { Icon(icon, contentDescription = screen.route) },
-                            label = { Text(screen.route.replaceFirstChar { it.uppercase() }) }
+                            icon = { Icon(icon, contentDescription = screen.route, tint = MaterialTheme.colorScheme.onPrimary) },
+                            label = { Text(screen.route.replaceFirstChar { it.uppercase() }, color = MaterialTheme.colorScheme.onPrimary) }
                         )
                     }
                 }
+
             }
         }
     ) { innerPadding ->

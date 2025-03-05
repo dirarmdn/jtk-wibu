@@ -11,6 +11,9 @@ sealed class Screen(val route: String) {
     object Search : Screen("search")
     object Bookmark : Screen("bookmark")
     object Profile : Screen("profile")
+    object AnimeDetail : Screen("detail/{malId}") {
+        fun createRoute(malId: Int) = "detail/$malId"
+    }
 }
 
 @Composable
@@ -25,11 +28,24 @@ fun AppNavHost(navController: NavHostController) {
                 }
             )
         }
-        composable(Screen.Home.route) { HomeScreen(onAnimeClick = {  }) }
+        composable(Screen.Home.route) {
+            HomeScreen(onAnimeClick = { malId ->
+                navController.navigate("detail/$malId")
+            })
+        }
         composable(Screen.Search.route) {
             SearchScreen(onAnimeClick = {  })
         }
         composable(Screen.Bookmark.route) { BookmarkScreen(onAnimeClick = {  }) }
         composable(Screen.Profile.route) { ProfileScreen() }
+        composable(Screen.AnimeDetail.route) { backStackEntry ->
+            val malId = backStackEntry.arguments?.getString("malId")?.toIntOrNull()
+            if (malId != null) {
+                AnimeDetailScreen(
+                    malId = malId,
+                    onBackPressed = { navController.popBackStack() }
+                )
+            }
+        }
     }
 }

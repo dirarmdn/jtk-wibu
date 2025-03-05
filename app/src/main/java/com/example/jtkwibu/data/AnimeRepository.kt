@@ -32,6 +32,10 @@ class AnimeRepository @Inject constructor(
         }
     }
 
+    suspend fun getAnimeById(malId: Int): AnimeEntity? {
+        return animeDao.getAnimeById(malId)
+    }
+
     fun getBookmarks(): Flow<List<AnimeEntity>> = animeDao.getBookmarkedAnime()
 
     suspend fun setBookmark(animeId: Int, isBookmarked: Boolean) {

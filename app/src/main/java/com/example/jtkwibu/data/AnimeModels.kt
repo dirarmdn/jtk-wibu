@@ -6,6 +6,10 @@ data class AnimeSearchResponse(
     @SerializedName("data") val data: List<AnimeNetworkModel>
 )
 
+data class AnimeDetailResponse(
+    @SerializedName("data") val data: AnimeNetworkModel
+)
+
 data class AnimeNetworkModel(
     @SerializedName("mal_id") val malId: Int,
     @SerializedName("title") val title: String,

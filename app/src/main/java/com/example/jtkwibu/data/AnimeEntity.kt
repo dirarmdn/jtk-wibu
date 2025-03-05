@@ -10,3 +10,11 @@ data class AnimeEntity(
     val imageUrl: String?,
     val isBookmarked: Boolean = false
 )
+
+fun AnimeNetworkModel.toEntity(): AnimeEntity {
+    return AnimeEntity(
+        malId = this.malId,
+        title = this.title,
+        imageUrl = this.images.jpg.imageUrl,
+    )
+}
