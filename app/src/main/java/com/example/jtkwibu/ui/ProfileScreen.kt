@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil3.compose.AsyncImage
+import coil.compose.AsyncImage
 import com.example.jtkwibu.viewmodel.ProfileViewModel
 import java.io.File
 

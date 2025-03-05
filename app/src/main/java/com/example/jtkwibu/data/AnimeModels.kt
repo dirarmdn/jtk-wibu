@@ -12,6 +12,7 @@ data class AnimeNetworkModel(
     @SerializedName("images") val images: AnimeImages
 )
 
+
 data class AnimeImages(
     @SerializedName("jpg") val jpg: AnimeJpg
 )
